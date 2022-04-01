@@ -62,7 +62,7 @@ export const getStaticProps: GetStaticProps = async () => {
             updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
                 day: '2-digit',
                 month: 'long',
-                year: 'numeric'
+                year: 'numeric',
             })
 
         }
