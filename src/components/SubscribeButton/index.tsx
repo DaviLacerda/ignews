@@ -20,7 +20,7 @@ function SubscribeButton(){
         }
 
         try {
-            const response = await api.post('/subscribe')
+            const response = await api.post('/api/subscribe')
 
             const { sessionId } = response.data
 
