@@ -1,17 +1,17 @@
 import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
+import Providers from "next-auth/providers";
 import { fauna } from "../../../services/fauna";
 import { Casefold, query as q } from "faunadb";
 
 export default NextAuth({
   providers: [
-    GithubProvider({
+    Providers.GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
   callbacks: {
-    async session({ session }){
+    async session(session){
       try {
         const userActiveSubscription = await fauna.query(
           q.Get(
@@ -42,7 +42,7 @@ export default NextAuth({
       }
 
     },
-    async signIn({ user, account, profile }) {
+    async signIn(user, account, profile) {
       const { email } = user
 
       try {
